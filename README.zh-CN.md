@@ -32,16 +32,18 @@
 
 ## 运行
 
-先克隆仓库，再在仓库根目录创建虚拟环境。本次使用 Windows、64 位 Python 3.13 和 `requirements.txt` 中的四个依赖版本。在 PowerShell 中运行以下命令。
+代码要求 Python 3.8 或更高版本。`requirements.txt` 在 Python 3.12 及以上安装归档的依赖版本，在 3.8–3.11 安装最后一批兼容版本；仓库中的结果由前者生成。归档实验使用 Windows、64 位 Python 3.13。先克隆仓库，再在仓库根目录创建虚拟环境，在 PowerShell 中运行以下命令。
 
 ```powershell
 git clone https://github.com/zxg0623/boom-busty-marketron.git
 cd boom-busty-marketron
-py -3.13 -m venv .venv
+py -3 -m venv .venv
 .\.venv\Scripts\python -m pip install -r requirements.txt
 .\.venv\Scripts\python verify.py
 .\.venv\Scripts\python run.py all --profile quick --jobs 2
 ```
+
+在 POSIX shell 中，用 `python3 -m venv .venv` 创建环境（Python 3.8 或更高版本），并把下文命令中的 `.\.venv\Scripts\python` 换成 `.venv/bin/python`。
 
 以下命令重跑随包的正式实验。首次运行需要编译 Numba 数值内核。减少 `--jobs` 可降低内存占用。模型和论文表格对照可离线运行；独立历史数据核对脚本 `historical_check.py` 默认从 Yahoo Finance 取标普 500 价格指数和全收益指数，也支持传入本地行情 JSON。
 

@@ -14,12 +14,12 @@ The full simulation keeps separate books for the ten largest stocks and the othe
 
 ## Run the reproduction
 
-The archived run used 64-bit Python 3.13.0 on Windows. Clone the repository and install the pinned dependencies in a virtual environment. In PowerShell, run the following commands. [Dependencies](requirements.txt) · [Archived environment and seed](results/run_info.json)
+The code requires Python 3.8 or later. The archived run used 64-bit Python 3.13.0 on Windows. `requirements.txt` installs the archived pins on Python 3.12+ and the last compatible releases on Python 3.8–3.11; the archived results were produced with the former. Clone the repository and install the dependencies in a virtual environment. In PowerShell, run the following commands. [Dependencies](requirements.txt) · [Archived environment and seed](results/run_info.json)
 
 ```powershell
 git clone https://github.com/zxg0623/boom-busty-marketron.git
 cd boom-busty-marketron
-py -3.13 -m venv .venv
+py -3 -m venv .venv
 .\.venv\Scripts\python -m pip install -r requirements.txt
 .\.venv\Scripts\python verify.py
 .\.venv\Scripts\python run.py all --profile quick --jobs 2
@@ -27,7 +27,7 @@ py -3.13 -m venv .venv
 
 `verify.py` checks the nonlinear impact step against an independent ODE solver, then checks the portfolio budget and reconstructs index returns from constituent weights. A successful run prints `"passed": true`. The quick profile runs a 100-stock example with three years of BBM warm-up and writes its CSVs and figures to `quick_results/`. Numba compiles the simulation kernels on first use.
 
-For a POSIX shell, create the environment with `python3.13 -m venv .venv` and use `.venv/bin/python` in place of `.\.venv\Scripts\python` in the commands above and below.
+For a POSIX shell, create the environment with `python3 -m venv .venv` (Python 3.8 or later) and use `.venv/bin/python` in place of `.\.venv\Scripts\python` in the commands above and below.
 
 To reproduce the results below, run the full profile. It uses 500 stocks, a 50-year BBM warm-up, a five-year I-BBM warm-up and master seed `20261126`. The commands below write into a separate directory so you can compare the output with the archived files.
 

@@ -6,6 +6,7 @@ zero return is added, and the warm-up is excluded by the caller.
 """
 
 from dataclasses import dataclass
+from typing import Optional
 
 import numpy as np
 
@@ -26,7 +27,7 @@ class Drawdown:
     peak: int
     breach: int
     trough: int
-    rebound: int | None
+    rebound: Optional[int]
     depth: float
 
 
